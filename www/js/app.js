@@ -23,14 +23,17 @@ app.run(function($ionicPlatform) {
   });
 });
 app.controller('drugPortfolio',function($scope){
-
-	$scope.drugsInfo = [{'name':'drugName','strength':'10mg','dosage':[{'type':'m','value':0},{'type':'a','value':0},{'type':'n','value':0}]}];
+	$scope.defaultDrugs = {'name':'','strength':'','dosage':[{'type':'m','value':[{'type':'b','value':'0'},{'type':'a','value':'0'}]},{'type':'a','value':[{'type':'b','value':'0'},{'type':'a','value':'0'}]},{'type':'n','value':[{'type':'b','value':'0'},{'type':'a','value':'0'}]}]};
+	$scope.drugsInfo = [];
+	$scope.drugsInfo.push($scope.defaultDrugs);
 	$scope.drugTimes={};
 	$scope.drugTimes['m'] = 'Morning';
 	$scope.drugTimes['a'] = 'Afternoon';
 	$scope.drugTimes['n'] = 'Night';
 	
-	$scope.drugPeriod = ['Before','After'];
+	$scope.drugPeriod = {'b':'Before','a':'After'};
+	
+	
 	
 	
 });

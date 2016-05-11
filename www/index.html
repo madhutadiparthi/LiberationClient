@@ -29,6 +29,11 @@
       </ion-header-bar>
       <ion-content>
 	<div ng-controller="drugPortfolio">
+		<ion-list>
+			<ion-item>
+			
+			</ion-item>
+		</ion-list>
 		<div class="list" ng-repeat="drugs in drugsInfo">
 			<label class="item item-input item-stacked-label">
 				<span class="input-label">Drug Name</span>
@@ -41,11 +46,11 @@
 			<div class="row" ng-repeat="dosage in drugs.dosage">
 				<div class="col">				
 					<h4>{{drugTimes[dosage.type]}} </h4>
+				</div >
+				<div class= "col" ng-repeat="period  in dosage.value">					
+					<ion-checkbox >{{drugPeriod[period.type]}}</ion-checkbox>					
 				</div>
-				<div class= "col" ng-repeat="period  in drugPeriod">					
-					<ion-checkbox >{{period}}</ion-checkbox>					
-				</div>
-			</div>			
+			</div>	
 		</div>
 	</div>
       </ion-content>
