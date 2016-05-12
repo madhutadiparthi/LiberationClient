@@ -24,8 +24,10 @@ app.run(function($ionicPlatform) {
 });
 app.controller('drugPortfolio',function($scope){
 	$scope.defaultDrugs = {'name':'Saridon','strength':'10mg','dosage':'2','show':false};
+	
 	$scope.drugsInfo = [];
 	$scope.drugsInfo.push($scope.defaultDrugs);
+	$scope.drugsInfo.push({'name':'Crocin','strength':'10mg','dosage':'2','show':false});
 	$scope.minDosage = 1;
 	$scope.maxDosage= 10;
 	$scope.showHideDrug = function(drugs) {
