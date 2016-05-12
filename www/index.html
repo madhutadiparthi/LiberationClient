@@ -29,29 +29,34 @@
       </ion-header-bar>
       <ion-content>
 	<div ng-controller="drugPortfolio">
-		<ion-list>
-			<ion-item>
-			
-			</ion-item>
-		</ion-list>
 		<div class="list" ng-repeat="drugs in drugsInfo">
-			<label class="item item-input item-stacked-label">
-				<span class="input-label">Drug Name</span>
-				<input type="text" ng-model="drugs.name" placeholder="Drug Name">
-			</label>
-			<label class="item item-input item-stacked-label">
-				<span class="input-label">Strength</span>
-				<input type="text"  ng-model="drugs.strength" placeholder="Strength">
-			</label>
-			<div class="row" ng-repeat="dosage in drugs.dosage">
-				<div class="col">				
-					<h4>{{drugTimes[dosage.type]}} </h4>
-				</div >
-				<div class= "col" ng-repeat="period  in dosage.value">					
-					<ion-checkbox >{{drugPeriod[period.type]}}</ion-checkbox>					
-				</div>
-			</div>	
-		</div>
+		 <ion-item class="item-stable"
+                    ng-click="showHideDrug(drugs)"
+                    ng-class="{active: isDrugEditShown(drugs)}">
+              <i class="icon" ng-class="isDrugEditShown(drugs) ? 'ion-minus' : 'ion-plus'"></i>
+            &nbsp;
+            {{drugs.name}} {{drugs.strength}} {{drugs.dosage}} times a day.
+          </ion-item>
+		  <ion-item class="item-accordion"                    
+                    ng-show="isDrugEditShown(drugs)">
+            	<label class="item item-input item-floating-label">
+					<span class="input-label">Drug Name</span>
+					<input type="text" ng-model="drugs.name" placeholder="Drug Name">
+				</label>
+				<label class="item item-input item-floating-label">
+					<span class="input-label">Strength</span>
+					<input type="text"  ng-model="drugs.strength" placeholder="Strength">
+				</label>			
+				<label class="item item-floating-label">
+					<span class="input-label">Dosage {{drugs.dosage}} times a day</span>
+					<div class="list">
+					<span class="title">{{minDosage}}</span>
+					<input type="range" ng-model="drugs.dosage" min={{minDosage}} max={{maxDosage}} value="2">
+					<span class="title">{{maxDosage}}</span>				
+					</div>
+				</label>							
+          </ion-item>
+		</div>	
 	</div>
       </ion-content>
     </ion-pane>

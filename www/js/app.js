@@ -23,17 +23,18 @@ app.run(function($ionicPlatform) {
   });
 });
 app.controller('drugPortfolio',function($scope){
-	$scope.defaultDrugs = {'name':'','strength':'','dosage':[{'type':'m','value':[{'type':'b','value':'0'},{'type':'a','value':'0'}]},{'type':'a','value':[{'type':'b','value':'0'},{'type':'a','value':'0'}]},{'type':'n','value':[{'type':'b','value':'0'},{'type':'a','value':'0'}]}]};
+	$scope.defaultDrugs = {'name':'Saridon','strength':'10mg','dosage':'2','show':false};
 	$scope.drugsInfo = [];
 	$scope.drugsInfo.push($scope.defaultDrugs);
-	$scope.drugTimes={};
-	$scope.drugTimes['m'] = 'Morning';
-	$scope.drugTimes['a'] = 'Afternoon';
-	$scope.drugTimes['n'] = 'Night';
-	
-	$scope.drugPeriod = {'b':'Before','a':'After'};
-	
-	
+	$scope.minDosage = 1;
+	$scope.maxDosage= 10;
+	$scope.showHideDrug = function(drugs) {
+    drugs.show = !drugs.show;
+  }
+  $scope.isDrugEditShown = function(drugs) {
+    return drugs.show;
+  }
+
 	
 	
 });
