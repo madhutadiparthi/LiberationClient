@@ -13,32 +13,48 @@
     -->
 
     <!-- ionic/angularjs js -->
-    <script src="lib/ionic/js/ionic.bundle.js"></script>
-
+    <script src="lib/ionic/js/ionic.bundle.js"></script>	
+	
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
 
+	<!-- Custom Libraries -->		
+	<script src="lib/ionic/js/ngstorage/ngStorage.js"></script>	
+	
     <!-- your app's js -->
     <script src="js/app.js"></script>
   </head>
-  <body ng-app="starter">
+  <body ng-app="starter" ng-controller="drugPortfolio">
 
     <ion-pane>
-      <ion-header-bar class="bar-stable">
-        <h1 class="title">PORTFOLIO</h1>
-      </ion-header-bar>
-      <ion-content>
-	<div ng-controller="drugPortfolio">
+      <ion-header-bar class="bar-stable ">
+	  <h1 class="button button-clear button button-icon ion-edit" ng-click="showDays()">
+			{{daysOpted}} days
+ 	</h1>
+        <h1 class="title">Portfolio</h1>
+		
+		
+		<button class="button button-icon icon-right ion-plus-circled" ng-click="addNew()"></button>
+      </ion-header-bar>	 
+	<div class="bar bar-subheader" ng-show="showHideDays()">	
+		<div class="item range item item">
+			<h4>{{minDays}}</h4>
+			<input type="range" ng-model="daysOpted" min={{minDays}} max={{maxDays}}>
+			<h4>{{maxDays}}</h4>
+			<button class="button button-icon icon-right ion-checkmark-circled" ng-click="hideDays()"></button>			
+		</div>
+	</div>	  
+      <ion-content>	  
+	<div >
 		<div class="list" ng-repeat="drugs in drugsInfo">
-		 <ion-item class="item-stable"
+		 <ion-item class="item-stable item-icon-left item-icon-right"
                     ng-click="showHideDrug(drugs)"
                     ng-class="{active: isDrugEditShown(drugs)}">
-              <i class="icon" ng-class="isDrugEditShown(drugs) ? 'ion-minus' : 'ion-plus'"></i>
-            &nbsp;
-            {{drugs.name}} {{drugs.strength}} {{drugs.dosage}} times a day.
+              <i class="icon" ng-class="isDrugEditShown(drugs) ? 'ion-android-contract' : 'ion-android-expand'"></i>            
+            {{drugs.name}} {{drugs.strength}} {{drugs.dosage}} times a day
+			<i class="icon" ng-class="'ion-trash-a'" ng-click="deleteDrug($index)"></i>
           </ion-item>
-		  <ion-item class="item-accordion"                    
-                    ng-show="isDrugEditShown(drugs)">
+		  <ion-item class="item-accordion" ng-show="isDrugEditShown(drugs)">
             	<label class="item item-input item-floating-label">
 					<span class="input-label">Drug Name</span>
 					<input type="text" ng-model="drugs.name" placeholder="Drug Name">
@@ -48,17 +64,25 @@
 					<input type="text"  ng-model="drugs.strength" placeholder="Strength">
 				</label>			
 				<label class="item item-floating-label">
-					<span class="input-label">Dosage {{drugs.dosage}} times a day</span>
-					<div class="list">
-					<span class="title">{{minDosage}}</span>
-					<input type="range" ng-model="drugs.dosage" min={{minDosage}} max={{maxDosage}} value="2">
-					<span class="title">{{maxDosage}}</span>				
-					</div>
+					<span class="input-label">Dosage {{drugs.dosage}} times a day</span>	
+					<div class="item range item item">
+						<h4>{{minDosage}}</h4>
+						<input type="range" ng-model="drugs.dosage" min={{minDosage}} max={{maxDosage}} value="2">
+						<h4>{{maxDosage}}</h4>			
+					</div>												
+					
+
 				</label>							
           </ion-item>
 		</div>	
 	</div>
+	
       </ion-content>
+	  <div class="bar bar-footer ">
+		<h1 class="title button button-full button-block button-positive button-large padding-bottom" ng-click="placeOrder()">Place Order</h1>				
+	  </div>
+	 
     </ion-pane>
+	 
   </body>
 </html>
