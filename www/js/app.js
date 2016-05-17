@@ -3,7 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-var app = angular.module('starter', ['ionic','ngStorage']);
+var app = angular.module('starter', ['ionic','ngStorage','ion-autocomplete']);
 
 app.run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -25,6 +25,94 @@ app.run(function($ionicPlatform) {
 
 app.controller('drugPortfolio',function($scope,$localStorage){
 	
+	$scope.callbackMethod = function(query)
+	{
+		
+			//return { items: [
+            //                        {id: "1", name: query + "1", view: "view: " + query + "1"},
+            //                        {id: "2", name: query + "2", view: "view: " + query + "2"},
+            //                        {id: "3", name: query + "3", view: "view: " + query + "3"}] };
+			
+			
+			return { drugs : [
+	{
+      "name": "Abamune",
+      "url": "http://www.medindia.net/drug-price/abacavir/abamune.htm",
+      "strength": "300mg",
+      "company": "Cipla Limited",
+      "type": "Tablet"
+    },
+    {
+      "name": "Abavir",
+      "url": "http://www.medindia.net/drug-price/abacavir/abavir.htm",
+      "strength": "300mg",
+      "company": "Genix Pharma Ltd",
+      "type": "Tablet"
+    },
+    {
+      "name": "Abcavir",
+      "url": "http://www.medindia.net/drug-price/abacavir/abcavir.htm",
+      "strength": "300mg",
+      "company": "Taj Pharmaceuticals Ltd",
+      "type": "Tablet"
+    },
+    {
+      "name": "Abec",
+      "url": "http://www.medindia.net/drug-price/abacavir/abec.htm",
+      "strength": "300mg",
+      "company": "Emcure Pharmaceuticals Ltd.",
+      "type": "Tablet"
+    },
+    {
+      "name": "Abmune",
+      "url": "http://www.medindia.net/drug-price/abacavir/abmune.htm",
+      "strength": "300mg",
+      "company": "Cipla Limited",
+      "type": "Tablet"
+    },
+	{
+      "name": "Abamune",
+      "url": "http://www.medindia.net/drug-price/abacavir/abamune.htm",
+      "strength": "300mg",
+      "company": "Cipla Limited",
+      "type": "Tablet"
+    },
+    {
+      "name": "Abavir",
+      "url": "http://www.medindia.net/drug-price/abacavir/abavir.htm",
+      "strength": "300mg",
+      "company": "Genix Pharma Ltd",
+      "type": "Tablet"
+    },
+    {
+      "name": "Abcavir",
+      "url": "http://www.medindia.net/drug-price/abacavir/abcavir.htm",
+      "strength": "300mg",
+      "company": "Taj Pharmaceuticals Ltd",
+      "type": "Tablet"
+    },
+    {
+      "name": "Abec",
+      "url": "http://www.medindia.net/drug-price/abacavir/abec.htm",
+      "strength": "300mg",
+      "company": "Emcure Pharmaceuticals Ltd.",
+      "type": "Tablet"
+    },
+    {
+      "name": "Abmune",
+      "url": "http://www.medindia.net/drug-price/abacavir/abmune.htm",
+      "strength": "300mg",
+      "company": "Cipla Limited",
+      "type": "Tablet"
+    },
+    {
+      "name": "Virol",
+      "url": "http://www.medindia.net/drug-price/abacavir/virol.htm",
+      "strength": "300mg",
+      "company": "Super Speciality (Ranbaxy Laboratories Ltd)",
+      "type": "Tablet"
+			}]}
+	}
 	$scope.portfolio = 
 		{
 			'type' : 'portfolio',
