@@ -22,6 +22,16 @@ app.run(function($ionicPlatform) {
     }
   });
 });
+app.config(function($stateProvider,$urlRouterProvider){
+	$stateProvider.state('index',{
+		url:'/',
+		templateUrl:'home.html'
+	}).state('loading',{
+		url: '/1',
+		templateUrl:'loading.html'
+	});
+	$urlRouterProvider.otherwise('/');	
+});
 
 app.controller('drugPortfolio',function($scope,$localStorage){
 	
@@ -35,83 +45,18 @@ app.controller('drugPortfolio',function($scope,$localStorage){
 			
 			
 			return { drugs : [
-	{
+			{
       "name": "Abamune",
       "url": "http://www.medindia.net/drug-price/abacavir/abamune.htm",
       "strength": "300mg",
       "company": "Cipla Limited",
       "type": "Tablet"
-    },
-    {
-      "name": "Abavir",
-      "url": "http://www.medindia.net/drug-price/abacavir/abavir.htm",
-      "strength": "300mg",
-      "company": "Genix Pharma Ltd",
-      "type": "Tablet"
-    },
-    {
-      "name": "Abcavir",
-      "url": "http://www.medindia.net/drug-price/abacavir/abcavir.htm",
-      "strength": "300mg",
-      "company": "Taj Pharmaceuticals Ltd",
-      "type": "Tablet"
-    },
-    {
-      "name": "Abec",
-      "url": "http://www.medindia.net/drug-price/abacavir/abec.htm",
-      "strength": "300mg",
-      "company": "Emcure Pharmaceuticals Ltd.",
-      "type": "Tablet"
-    },
-    {
-      "name": "Abmune",
-      "url": "http://www.medindia.net/drug-price/abacavir/abmune.htm",
-      "strength": "300mg",
-      "company": "Cipla Limited",
-      "type": "Tablet"
-    },
+			}]};
+	}
+	$scope.progressval  = 0;
+	for(var i=0;i<=100;i++)
 	{
-      "name": "Abamune",
-      "url": "http://www.medindia.net/drug-price/abacavir/abamune.htm",
-      "strength": "300mg",
-      "company": "Cipla Limited",
-      "type": "Tablet"
-    },
-    {
-      "name": "Abavir",
-      "url": "http://www.medindia.net/drug-price/abacavir/abavir.htm",
-      "strength": "300mg",
-      "company": "Genix Pharma Ltd",
-      "type": "Tablet"
-    },
-    {
-      "name": "Abcavir",
-      "url": "http://www.medindia.net/drug-price/abacavir/abcavir.htm",
-      "strength": "300mg",
-      "company": "Taj Pharmaceuticals Ltd",
-      "type": "Tablet"
-    },
-    {
-      "name": "Abec",
-      "url": "http://www.medindia.net/drug-price/abacavir/abec.htm",
-      "strength": "300mg",
-      "company": "Emcure Pharmaceuticals Ltd.",
-      "type": "Tablet"
-    },
-    {
-      "name": "Abmune",
-      "url": "http://www.medindia.net/drug-price/abacavir/abmune.htm",
-      "strength": "300mg",
-      "company": "Cipla Limited",
-      "type": "Tablet"
-    },
-    {
-      "name": "Virol",
-      "url": "http://www.medindia.net/drug-price/abacavir/virol.htm",
-      "strength": "300mg",
-      "company": "Super Speciality (Ranbaxy Laboratories Ltd)",
-      "type": "Tablet"
-			}]}
+		$scope.progressval= i;
 	}
 	$scope.portfolio = 
 		{
