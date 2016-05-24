@@ -6,6 +6,7 @@
   },
   "dependencies": {
     "ngstorage": "^0.3.10",
-    "ion-autocomplete": "^0.3.2"
+    "ion-autocomplete": "^0.3.2",
+    "ion-floating-menu": "^1.0.1"
   }
 }

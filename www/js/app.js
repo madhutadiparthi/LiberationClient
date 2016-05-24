@@ -3,7 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-var app = angular.module('starter', ['ionic','ngStorage','ion-autocomplete']);
+var app = angular.module('starter', ['ionic','ngStorage','ion-autocomplete','ion-floating-menu','ionic-numberpicker']);
 
 app.run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -33,7 +33,12 @@ app.config(function($stateProvider,$urlRouterProvider){
 	$urlRouterProvider.otherwise('/');	
 });
 
-app.controller('drugPortfolio',function($scope,$localStorage){
+app.controller('drugPortfolio',function($scope,$ionicScrollDelegate,$localStorage){
+	
+	
+
+	
+	
 	
 	$scope.callbackMethod = function(query)
 	{
@@ -79,7 +84,13 @@ app.controller('drugPortfolio',function($scope,$localStorage){
 	$scope.minDays = 5;
 	$scope.maxDays = 30;
 	
-	
+	$scope.trashPortfolio = function()
+	{
+		//TODO: Show an alert:
+		$scope.drugsInfo = [];
+		//TODO : Return to different screen???
+		
+	}
 	$scope.canShowDays = false;
 	
 	$scope.showDays = function()
@@ -101,8 +112,8 @@ app.controller('drugPortfolio',function($scope,$localStorage){
 	$scope.drugsInfo = [];
 	
 	//Remove the 4 lines during live.
-	$scope.sampleDrug1 = {'name':'Saridon','strength':'10mg','dosage':'2','show':false};
-	$scope.sampleDrug2 = {'name':'Crocin','strength':'10mg','dosage':'2','show':false};
+	$scope.sampleDrug1 = {'name':'Saridon','strength':'10mg','dosage':'2','show':false,'ordered':true};
+	$scope.sampleDrug2 = {'name':'Crocin','strength':'10mg','dosage':'2','show':false,'ordered':true};
 	$scope.drugsInfo.push($scope.sampleDrug1);
 	$scope.drugsInfo.push($scope.sampleDrug2);
 	///
@@ -114,13 +125,20 @@ app.controller('drugPortfolio',function($scope,$localStorage){
 	//Show hide drug
 	$scope.showHideDrug = function(drugs) 
 	{
-		drugs.show = !drugs.show;
+		drugs.show = !drugs.show;				
 	}
+  
   
   
   //Accordion for the drugs to expand for editing
   $scope.isDrugEditShown = function(drugs) {
     return drugs.show;
+  }
+  
+  //Enable or disable the order
+  $scope.toggleOrder = function(index)
+  {
+	  $scope.drugsInfo[index].ordered = !$scope.drugsInfo[index].ordered;	  
   }
   
   //Delete the drug
@@ -134,6 +152,7 @@ app.controller('drugPortfolio',function($scope,$localStorage){
   {
 	  var newDrug = {'name':'','strength':'','dosage':'','show':false};
 	  $scope.drugsInfo.push(newDrug);
+	  $ionicScrollDelegate.resize(true);
   }
   
   //Event when Place Order is clicked
@@ -145,6 +164,25 @@ app.controller('drugPortfolio',function($scope,$localStorage){
 	  
 	  $localStorage.portfolio = $scope.portfolio;
   }
+  //Show the time picker 
+  	$scope.numberPickerObject = 
+	{
+		inputValue: $scope.daysOpted, 
+		minValue: 0,
+		maxValue: 30,
+		precision: 3,    
+		format: "WHOLE", 
+		titleLabel: 'Number of Days',  
+		setLabel: 'Set',     
+		setButtonType: 'button-positive',  
+		closeButtonType: 'button-stable',  
+		callback: function (val) { 
+				if(val !== undefined)
+				{
+					$scope.daysOpted =val;
+				}
+			}
+	}
 	
 	
 });

@@ -1,29 +1,23 @@
     <ion-view view-title="My Portfolio">
+	
 	<ion-pane>
       <ion-header-bar class="bar-stable ">
 	 
-        <h1 class="title">Portfolio</h1>
-		
-		
-		<button class="button button-icon icon-right ion-plus-circled" ng-click="addNew()"></button>
-      </ion-header-bar>	 
-	<div class="bar bar-subheader" ng-show="showHideDays()">	
-		<div class="item range item item">
-			<h4>{{minDays}}</h4>
-			<input type="range" ng-model="daysOpted" min={{minDays}} max={{maxDays}}>
-			<h4>{{maxDays}}</h4>
-			<button class="button button-icon icon-right ion-checkmark-circled" ng-click="hideDays()"></button>			
-		</div>
-	</div>	  
+        <h1 class="title">Portfolio</h1>		
+		<!-- button class="button button-icon icon-right ion-plus-circled" ng-click="addNew()"></button -->
+		<button class="button button-icon icon-right ion-trash-a" ng-click="trashPortfolio()"></button>		
+      </ion-header-bar>	 	
+	<ion-floating-button click="addNew()"  button-color="#2AC9AA"  has-footer="true" icon="ion-plus" iconColor="#fff">
+	</ion-floating-button>	
       <ion-content>	  
 	<div >
 		<div class="list" ng-repeat="drugs in drugsInfo">
 		 <ion-item class="item-stable item-icon-left item-icon-right"
-                    ng-click="showHideDrug(drugs)"
+                    ng-click="showHideDrug(drugs); $event.stopPropagation();"
                     ng-class="{active: isDrugEditShown(drugs)}">
-              <i class="icon" ng-class="isDrugEditShown(drugs) ? 'ion-android-contract' : 'ion-android-expand'"></i>            
-            {{drugs.name}} {{drugs.strength}} {{drugs.dosage}} times a day
-			<i class="icon" ng-class="'ion-trash-a'" ng-click="deleteDrug($index)"></i>
+              <i class="icon" ng-class="isDrugEditShown(drugs) ? 'ion-android-contract' : 'ion-android-expand'"></i>                  
+				{{drugs.name}} {{drugs.strength}} {{drugs.dosage}} times a day			
+			<button class="button icon" ng-class="drugs.ordered?'ion-ios-download-outline button-balanced':'ion-ios-upload-outline button-assertive'" ion-stop-event="click" ng-click="toggleOrder($index)"></button -->
           </ion-item>
 		  <ion-item class="item-accordion" ng-show="isDrugEditShown(drugs)">
             	<label class="item item-input item-floating-label">
@@ -39,22 +33,27 @@
 					<div class="item range item item">
 						<h4>{{minDosage}}</h4>
 						<input type="range" ng-model="drugs.dosage" min={{minDosage}} max={{maxDosage}} value="2">
-						<h4>{{maxDosage}}</h4>			
+						<h4>{{maxDosage}}</h4>									
 					</div>												
-					
-
-				</label>							
+				</label>	
+				<button class="button icon-left ion-trash-a" ng-click="deleteDrug($index)">Delete</button>
           </ion-item>
 		</div>	
-	</div>
-	
+	</div>	
+   
       </ion-content>
-	  <div class="bar bar-footer ">
-	   <h1 class="button button-clear button button-icon ion-edit" ng-click="showDays()">
-			{{daysOpted}} days
-		</h1>
-		<!-- h1 class="title button button-full button-block button-positive button-large padding-bottom" ng-click="placeOrder()">Place Order</h1 -->				
-	  </div>
+	 
+	 <ion-footer-bar  class="bar-balanced">
+		<div class="buttons">
+		<ionic-numberpicker input-obj="numberPickerObject">
+			<button class="button button-icon ion-edit">{{daysOpted}} days</button>
+			</ionic-numberpicker>
+		</div>
+		<h1 class="title"></h1>
+		<div class="buttons" ng-click="doSomething()">
+			<button class="button button-icon ion-android-cart">Check Out</button>
+		</div>
+</ion-footer-bar>
 	 
     </ion-pane>
 	</ion-view>
