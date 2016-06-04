@@ -22,24 +22,31 @@ app.run(function($ionicPlatform) {
     }
   });
 });
+
 app.config(function($stateProvider,$urlRouterProvider){
 	$stateProvider.state('index',{
-		url:'/',
+		url:'/portfolio',
 		templateUrl:'home.html'
 	}).state('loading',{
-		url: '/1',
+		url: '/loading',
 		templateUrl:'loading.html'
+	}).state('OrderConfirmation',{
+		url: '/OrderConfirmation',
+		templateUrl : 'OrderConfirmation.html'
+	}).state('OrderHistory',{
+		url: '/OrderHistory',
+		templateUrl:'OrderHistory.html'
+	}).state('OrderDetails',{
+		url: '/OrderDetails',
+		templateUrl:'OrderDetails.html'
+	}).state('Profile',{
+		url:'Profile',
+		templateUrl:'Profile.html'
 	});
 	$urlRouterProvider.otherwise('/');	
 });
 
-app.controller('drugPortfolio',function($scope,$ionicScrollDelegate,$localStorage){
-	
-	
-
-	
-	
-	
+app.controller('drugPortfolio',function($scope,$ionicScrollDelegate,$localStorage){	
 	$scope.callbackMethod = function(query)
 	{
 		
@@ -183,6 +190,8 @@ app.controller('drugPortfolio',function($scope,$ionicScrollDelegate,$localStorag
 				}
 			}
 	}
+	
+	
 	
 	
 });
