@@ -25,7 +25,7 @@ app.run(function($ionicPlatform) {
 
 app.config(function($stateProvider,$urlRouterProvider){
 	$stateProvider.state('index',{
-		url:'/portfolio',
+		url:'/',
 		templateUrl:'home.html'
 	}).state('loading',{
 		url: '/loading',
@@ -46,7 +46,7 @@ app.config(function($stateProvider,$urlRouterProvider){
 	$urlRouterProvider.otherwise('/');	
 });
 
-app.controller('drugPortfolio',function($scope,$ionicScrollDelegate,$localStorage){	
+app.controller('drugPortfolio',function($scope,$ionicScrollDelegate,$localStorage,$http){	
 	$scope.callbackMethod = function(query)
 	{
 		
@@ -170,6 +170,54 @@ app.controller('drugPortfolio',function($scope,$ionicScrollDelegate,$localStorag
 	  $scope.portfolio.days  = $scope.daysOpted;
 	  
 	  $localStorage.portfolio = $scope.portfolio;
+
+	  var postData = {
+          'customerContact' : '9902455333',
+          'vendorContact' : '918028450292',
+          'drugList': [
+               {'drugName':'Dolo', 'strength':'650mg', 'quantity':'15'},
+               {'drugName':'Saridon','strength':'500mg','quantity':'30'}
+          ]
+      };
+
+    var config = {
+        headers : {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        }
+    }
+
+    console.log('Sending: ' + JSON.stringify(postData));
+    $http({
+      withCredentials: false,
+       method: 'POST',
+      url: '/orders/new',
+      headers: {'Content-Type': 'application/json', 'Accept':'application/json', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Headers': 'X-Requested-With, Content-Type'},
+      data: postData
+    })
+    .then(function success(resp) {
+    	console.log('response: ' + resp.data.orderId);
+    }, 
+    function error(err) {
+    	console.log("error: " + err);
+    });
+    /*
+    .success(function(data, status, headers, config) {
+      console.log('data = ' + data);
+      console.log('status = ' + status);
+      console.log('headers = ' + headers);
+      console.log('config = ' + config);
+    })
+    .error(function(data, status, headers, config) {
+        console.log("data: " + data);
+       console.log('status = ' + status);
+      console.log('headers = ' + headers);
+      console.log('config = ' + JSON.stringify(config));
+       console.log('error*********');
+    });
+*/
+
+
   }
   //Show the time picker 
   	$scope.numberPickerObject = 

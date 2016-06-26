@@ -1,4 +1,8 @@
 {
   "name": "LiberationClient",
-  "app_id": ""
+  "app_id": "com.liberation.client",
+  "proxies": [{
+      "path": "/orders/new",
+      "proxyUrl": "http://localhost:3000/orders/new"
+   }]
 }
