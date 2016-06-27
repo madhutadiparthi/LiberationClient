@@ -201,23 +201,6 @@ app.controller('drugPortfolio',function($scope,$ionicScrollDelegate,$localStorag
     function error(err) {
     	console.log("error: " + err);
     });
-    /*
-    .success(function(data, status, headers, config) {
-      console.log('data = ' + data);
-      console.log('status = ' + status);
-      console.log('headers = ' + headers);
-      console.log('config = ' + config);
-    })
-    .error(function(data, status, headers, config) {
-        console.log("data: " + data);
-       console.log('status = ' + status);
-      console.log('headers = ' + headers);
-      console.log('config = ' + JSON.stringify(config));
-       console.log('error*********');
-    });
-*/
-
-
   }
   //Show the time picker 
   	$scope.numberPickerObject = 
