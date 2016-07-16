@@ -142,19 +142,6 @@ app.controller('drugPortfolio', function ($scope, $ionicScrollDelegate, $localSt
 
         console.log('Sending: ' + JSON.stringify(postData));
         serviceCallManager.placeOrder(postData);
-//        $http({
-//            withCredentials: false,
-//            method: 'POST',
-//            url: '/orders/new',
-//            headers: {'Content-Type': 'application/json', 'Accept': 'application/json', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Headers': 'X-Requested-With, Content-Type'},
-//            data: postData
-//        })
-//            .then(function success(resp) {
-//                console.log('response: ' + resp.data.orderId);
-//            },
-//                function error(err) {
-//                    console.log("error: " + err);
-//                });
     }
     //Show the time picker 
     $scope.numberPickerObject =
