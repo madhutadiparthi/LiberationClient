@@ -1,59 +1,59 @@
-    <ion-view view-title="My Portfolio">
-	
-	<ion-pane>
-      <ion-header-bar class="bar-stable ">
-	 
-        <h1 class="title">Portfolio</h1>		
-		<!-- button class="button button-icon icon-right ion-plus-circled" ng-click="addNew()"></button -->
-		<button class="button button-icon icon-right ion-trash-a" ng-click="trashPortfolio()"></button>		
-      </ion-header-bar>	 	
-	<ion-floating-button click="addNew()"  button-color="#2AC9AA"  has-footer="true" icon="ion-plus" iconColor="#fff">
-	</ion-floating-button>	
-      <ion-content>	  
-	<div >
-		<div class="list" ng-repeat="drugs in drugsInfo">
-		 <ion-item class="item-stable item-icon-left item-icon-right"
-                    ng-click="showHideDrug(drugs); $event.stopPropagation();"
-                    ng-class="{active: isDrugEditShown(drugs)}">
-              <i class="icon" ng-class="isDrugEditShown(drugs) ? 'ion-android-contract' : 'ion-android-expand'"></i>                  
-				{{drugs.name}} {{drugs.strength}} {{drugs.dosage}} times a day			
-			<button class="button icon" ng-class="drugs.ordered?'ion-ios-download-outline button-balanced':'ion-ios-upload-outline button-assertive'" ion-stop-event="click" ng-click="toggleOrder($index)"></button -->
-          </ion-item>
-		  <ion-item class="item-accordion" ng-show="isDrugEditShown(drugs)">
-            	<label class="item item-input item-floating-label">
-					<span class="input-label">Drug Name</span>
-					<input ion-autocomplete readonly="readonly" class="ion-autocomplete"  ng-model-options="{debounce:1000}" item-value-key="name" items-method-value-key="drugs" autocomplete="on" item-view-value-key="name" max-selected-items="1" items-method="callbackMethod(query)"  type="text" ng-model="drugs.name" placeholder="Drug Name">
-				</label>
-				<label class="item item-input item-floating-label">
-					<span class="input-label">Strength</span>
-					<input type="text"  ng-model="drugs.strength" placeholder="Strength">
-				</label>			
-				<label class="item item-floating-label">
-					<span class="input-label">Dosage {{drugs.dosage}} times a day</span>	
-					<div class="item range item item">
-						<h4>{{minDosage}}</h4>
-						<input type="range" ng-model="drugs.dosage" min={{minDosage}} max={{maxDosage}} value="2">
-						<h4>{{maxDosage}}</h4>									
-					</div>												
-				</label>	
-				<button class="button icon-left ion-trash-a" ng-click="deleteDrug($index)">Delete</button>
-          </ion-item>
-		</div>	
-	</div>	
-   
-      </ion-content>
-	 
-	 <ion-footer-bar  class="bar-balanced">
-		<div class="buttons">
-		<ionic-numberpicker input-obj="numberPickerObject">
-			<button class="button button-icon ion-edit">{{daysOpted}} days</button>
-			</ionic-numberpicker>
-		</div>
-		<h1 class="title"></h1>
-		<div class="buttons"">
-			<a href="#/OrderConfirmation" class="button button-icon ion-android-cart">Check Out</a>
-		</div>
-	</ion-footer-bar>
-	 
+<ion-view view-title="My Portfolio" ng-controller="drugPortfolio">
+
+    <ion-pane>
+        <ion-header-bar class="bar-stable ">
+
+            <h1 class="title">Portfolio</h1>		
+            <!-- button class="button button-icon icon-right ion-plus-circled" ng-click="addNew()"></button -->
+            <button class="button button-icon icon-right ion-trash-a" ng-click="trashPortfolio()"></button>		
+        </ion-header-bar>	 	
+        <ion-floating-button click="addNew()"  button-color="#2AC9AA"  has-footer="true" icon="ion-plus" iconColor="#fff">
+        </ion-floating-button>	
+        <ion-content>	  
+            <div >
+                <div class="list" ng-repeat="drugs in drugsInfo">
+                    <ion-item class="item-stable item-icon-left item-icon-right"
+                              ng-click="showHideDrug(drugs); $event.stopPropagation();"
+                              ng-class="{active: isDrugEditShown(drugs)}">
+                        <i class="icon" ng-class="isDrugEditShown(drugs) ? 'ion-android-contract' : 'ion-android-expand'"></i>                  
+                        {{drugs.name}} {{drugs.strength}} {{drugs.dosage}} times a day			
+                        <button class="button icon" ng-class="drugs.ordered ? 'ion-ios-download-outline button-balanced' : 'ion-ios-upload-outline button-assertive'" ion-stop-event="click" ng-click="toggleOrder($index)"></button -->
+                    </ion-item>
+                    <ion-item class="item-accordion" ng-show="isDrugEditShown(drugs)">
+                        <label class="item item-input item-floating-label">
+                            <span class="input-label">Drug Name</span>
+                            <input ion-autocomplete readonly="readonly" class="ion-autocomplete"  ng-model-options="{debounce: 1000}" item-value-key="name" items-method-value-key="drugs" autocomplete="on" item-view-value-key="name" max-selected-items="1" items-method="callbackMethod(query)"  type="text" ng-model="drugs.name" placeholder="Drug Name">
+                        </label>
+                        <label class="item item-input item-floating-label">
+                            <span class="input-label">Strength</span>
+                            <input type="text"  ng-model="drugs.strength" placeholder="Strength">
+                        </label>			
+                        <label class="item item-floating-label">
+                            <span class="input-label">Dosage {{drugs.dosage}} times a day</span>	
+                            <div class="item range item item">
+                                <h4>{{minDosage}}</h4>
+                                <input type="range" ng-model="drugs.dosage" min={{minDosage}} max={{maxDosage}} value="2">
+                                <h4>{{maxDosage}}</h4>									
+                            </div>												
+                        </label>	
+                        <button class="button icon-left ion-trash-a" ng-click="deleteDrug($index)">Delete</button>
+                    </ion-item>
+                </div>	
+            </div>	
+
+        </ion-content>
+
+        <ion-footer-bar  class="bar-balanced">
+            <div class="buttons">
+                <ionic-numberpicker input-obj="numberPickerObject">
+                    <button class="button button-icon ion-edit">{{daysOpted}} days</button>
+                </ionic-numberpicker>
+            </div>
+            <h1 class="title"></h1>
+            <div class="buttons">
+                <a href="#/OrderConfirmation" class="button button-icon ion-android-cart">Check Out</a>
+            </div>
+        </ion-footer-bar>
+
     </ion-pane>
-	</ion-view>
+</ion-view>
